@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from shortener.utils import create_shortcode
+from url_shortner_project.shortener.utils import create_shortcode
 
 
 # Create your models here.

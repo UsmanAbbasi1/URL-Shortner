@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # custom apps
-    'shortener',
+    'url_shortner_project.shortener',
 ]
 
 MIDDLEWARE_CLASSES = [
