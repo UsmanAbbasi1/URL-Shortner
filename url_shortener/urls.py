@@ -20,5 +20,5 @@ from shortener.views import KirrRedirectView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^kirr/(?P<shortcode>[\w-]+)/$', KirrRedirectView.as_view())
+    url(r'^kirr/(?P<shortcode>[\w-]{6,15})/$', KirrRedirectView.as_view())
 ]
