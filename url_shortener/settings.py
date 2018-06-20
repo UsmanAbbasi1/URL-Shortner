@@ -24,7 +24,14 @@ SECRET_KEY = 'q1c2w3g3!t3_+h6-l#pyp!-(cb2%&(6t()^t+o5yf+fs+%*v43'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+'''
+Add these 2 entries in /etc/hosts file like this:
+127.0.0.1	www.tirr.com
+127.0.0.1	www.kirr.com
+
+then add them in ALLOWED_HOSTS to access your app with these hosts
+'''
+ALLOWED_HOSTS = ['www.kirr.com', 'www.tirr.com']
 
 # Application definition
 
