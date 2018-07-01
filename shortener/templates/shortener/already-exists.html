@@ -6,6 +6,6 @@
 </head>
 <body>
         <p> Url: {{ object.url }} already exists</p>
-        <p>Shortened Url : {{ object.shortcode }}</p>
+        <p>Shortened Url : <a href='{{ object.get_short_url }}' target = '_blank'>{{ object.get_short_url }} </a></p>
 </body>
 </html>

@@ -43,7 +43,7 @@ class HomeView(View):
         return render(request, template, context)
 
 
-class KirrRedirectView(View):
+class URLRedirectView(View):
     def get(self, request, shortcode, *args, **kwargs):
         obj = get_object_or_404(KirrURL, shortcode=shortcode)
         return HttpResponseRedirect(obj.url)

@@ -14,7 +14,7 @@ def validate_url(value):
 
     try:
         # Add 'http://' to url to make urls without 'http' valid
-        url_validator('http://' + value)
+        url_validator('https://' + value)
     except:
         validation2 = False
 
