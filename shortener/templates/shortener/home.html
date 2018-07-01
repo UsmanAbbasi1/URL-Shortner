@@ -2,10 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello There!</title>
+    <title>{{ title }}</title>
 </head>
 <body>
 
-hi there
+
+    <form method="POST" action="{%  url 'home' %}"> {% csrf_token %}
+        <input type="text" name="url" placeholder="Enter URL" required="true">
+{#        {{ form.as_p }}#}
+        {{ form.url.errors }}
+{#        {{ form.url }}#}
+        <input type="submit" value="Submit">
+
+    </form>
+
+
 </body>
 </html>

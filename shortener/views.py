@@ -6,12 +6,41 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import View
 
+from shortener.forms import SubmitUrlForm
 from shortener.models import KirrURL
 
 
 class HomeView(View):
     def get(self, request):
-        return render(request, 'shortener/home.html', {})
+        url_form = SubmitUrlForm()
+        context = {
+            'title': 'Url Shortener',
+            'form': url_form
+        }
+        return render(request, 'shortener/home.html', context)
+
+    def post(self, request):
+        url_form = SubmitUrlForm(request.POST)
+        template = 'shortener/home.html'
+        context = {
+            'title': 'Url Shortener',
+            'form': url_form
+        }
+
+        if url_form.is_valid():
+            url = url_form.cleaned_data.get('url')
+            object, created = KirrURL.objects.get_or_create(url=url)
+            context = {
+                'object': object,
+                'created': created
+            }
+
+            if created:
+                template = 'shortener/success.html'
+            else:
+                template = 'shortener/already-exists.html'
+
+        return render(request, template, context)
 
 
 class KirrRedirectView(View):
