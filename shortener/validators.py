@@ -7,20 +7,26 @@ def validate_url(value):
     validation1 = True
     validation2 = True
 
+    if 'http' not in value:
+        value = 'http://' + value
+
     try:
         url_validator(value)
     except:
         validation1 = False
 
-    try:
-        # Add 'http://' to url to make urls without 'http' valid
-        url_validator('https://' + value)
-    except:
-        validation2 = False
+    # try:
+    #     # Add 'http://' to url to make urls without 'http' valid
+    #     url_validator('https://' + value)
+    # except:
+    #     validation2 = False
 
-    # If even after adding 'http', validation fails, we want to raise ValidationError
-    if not validation1 and not validation2:
+    if not validation1:
         raise ValidationError("Invalid value for this field!")
+
+    # # If even after adding 'http', validation fails, we want to raise ValidationError
+    # if not validation1 and not validation2:
+    #     raise ValidationError("Invalid value for this field!")
 
     return value
 

@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
+{% extends "shortener/base.html" %}
 
-
-    <form method="POST" action="{%  url 'home' %}"> {% csrf_token %}
-        <input type="text" name="url" placeholder="Enter URL" required="true">
-{#        {{ form.as_p }}#}
-        {{ form.url.errors }}
-{#        {{ form.url }}#}
-        <input type="submit" value="Submit">
-
-    </form>
-
-
-</body>
-</html>
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="text-center col-sm-12">
+                <form method="POST" action="{%  url 'home' %}"> {% csrf_token %}
+                    <input type="text" name="url" placeholder="Enter URL" required="true">
+        {#            {{ form.as_p }}#}
+                    {{ form.url.errors }}
+        {#            {{ form.url }}#}
+                    <br>
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

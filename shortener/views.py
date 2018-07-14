@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import View
 
+from analytics.models import ClickEvent
 from shortener.forms import SubmitUrlForm
 from shortener.models import KirrURL
 
@@ -46,4 +47,5 @@ class HomeView(View):
 class URLRedirectView(View):
     def get(self, request, shortcode, *args, **kwargs):
         obj = get_object_or_404(KirrURL, shortcode=shortcode)
+        print(ClickEvent.objects.create_event(obj))
         return HttpResponseRedirect(obj.url)

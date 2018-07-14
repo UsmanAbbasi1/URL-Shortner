@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
-
+# from django.core.urlresolvers import reverse
+# from shortener.utils import create_shortcode
 from shortener.utils import create_shortcode
 
 
@@ -33,11 +34,14 @@ class KirrURL(models.Model):
         if not self.shortcode:
             self.shortcode = create_shortcode(self)
 
+        if 'http' not in self.url:
+            self.url = 'http://' + self.url
+
         super(KirrURL, self).save(*args, **kwargs)
 
     def get_short_url(self):
         base_url = "www.kirr.com:8000"
-        return base_url + reverse('shortcode', kwargs={'shortcode': self.shortcode},)
+        return base_url + reverse('shortcode', kwargs={'shortcode': self.shortcode}, )
 
     def __str__(self):
         return str(self.url)
